@@ -19,18 +19,20 @@ def coord(ang, vinicial):
 def anim(xcoord, ycoord):
     puntos = 0
     while puntos < len(xcoord):
-        draw.rect(screen, (255,0,0), (xcoord[puntos], 600-ycoord[puntos], 10,10), 3)
+        draw.rect(screen, (255,0,0), (xcoord[puntos], 300-ycoord[puntos], 10,10), 3)
         puntos += 1
 
 
 init()
 screen = display.set_mode((800,600))
 animar = False
+clock = time.Clock()
 
 while True:
     screen.fill((255,255,255))
     for e in event.get():
         if e.type == QUIT: sys.exit()
+        clock.tick(15)
         if e.type == KEYDOWN and e.key == K_1:
             animar = True
     
