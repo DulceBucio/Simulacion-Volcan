@@ -34,7 +34,7 @@ init()
 screen = display.set_mode((800,600))
 animar = False
 clock = time.Clock()
-calibri = font.SysFont('Calibri', 10)
+calibri = font.SysFont('Calibri', 20)
 
 while True:
     screen.fill((255,255,255))
@@ -46,8 +46,17 @@ while True:
     
     leyenda1 = calibri.render("Trayectoria actual: ", True, (0,0,0))
     screen.blit(leyenda1, (0,0))
+    leyenda2 = calibri.render("Alcance máximo: ", True, (0,0,0))
+    screen.blit(leyenda2, (0,20))
+    leyenda3 = calibri.render("Altura máxima: ", True, (0,0,0))
+    screen.blit(leyenda3, (0,40))
     if animar: 
         x1, y2 = coord(30,100)
         anim(x1, y2)
+        alcance1, alturamaxima1 = criticos(30,100)
+        #valor1 = calibri.render(alcance1, True, (0,0,0)) 
+        #valor2 = calibri.render(alturamaxima1, True, (0,0,0)) 
+        #screen.blit(10,20)
+        #screen.blit(10,40)
     
     display.flip()
