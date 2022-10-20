@@ -34,10 +34,10 @@ def resistencia(ang, vinicial):
     return xcoordr, ycoordr
 
 
-def anim(xcoord, ycoord):
+def anim(xcoordr, ycoordr):
     puntos = 0
-    while puntos < len(xcoord):
-        draw.rect(screen, (255,0,0), (xcoord[puntos], 300-ycoord[puntos], 10,10), 3)
+    while puntos < len(xcoordr):
+        draw.rect(screen, (255,0,0), (xcoordr[puntos], 300-ycoordr[puntos], 10,10), 3)
         time.delay(300)
         display.update()
         puntos += 1
@@ -54,7 +54,9 @@ print(alturamaxima1)
 
 init()
 screen = display.set_mode((800,600))
-animar = False
+animar1 = False
+animar2 = False
+animar3 = False
 clock = time.Clock()
 calibri = font.SysFont('Calibri', 20)
 
@@ -64,7 +66,11 @@ while True:
         if e.type == QUIT: sys.exit()
         clock.tick(15)
         if e.type == KEYDOWN and e.key == K_1:
-            animar = True
+            animar1 = True
+        if e.type == KEYDOWN and e.key == K_2:
+            animar2 = True
+        if e.type == KEYDOWN and e.key == K_3:
+            animar3 = True 
     
     leyenda1 = calibri.render("Trayectoria actual: ", True, (0,0,0))
     screen.blit(leyenda1, (0,0))
@@ -72,13 +78,18 @@ while True:
     screen.blit(leyenda2, (0,20))
     leyenda3 = calibri.render("Altura máxima: ", True, (0,0,0))
     screen.blit(leyenda3, (0,40))
-    if animar: 
-        x1, y2 = coord(30,100)
-        anim(x1, y2)
-        alcance1, alturamaxima1 = criticos(30,100)
-        print(alturamaxima1)
-        x1r, y1r = resistencia(30,100)
-        anim(x1r, y1r)
+    if animar1: 
+        x1, y1 = coord(30,100)
+        anim(x1, y1)
+    if animar2:
+        x2, y2 = coord(41, 175)
+        anim(x2,y2)
+    if animar3:
+        x3, y3 = coord(44,300)
+        anim(x3,y3) 
+    
+        #x1r, y1r = resistencia(30,100)
+        #anim(x1r, y1r)
         #valor1 = calibri.render(alcance1, True, (0,0,0)) 
         #valor2 = calibri.render(alturamaxima1, True, (0,0,0)) 
         #screen.blit(10,20)
