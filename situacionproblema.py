@@ -97,5 +97,5 @@ while True:
         #screen.blit(10,20)
         #screen.blit(10,40)
     screen.blit(fondo, (0,0))
-    screen.blit(volcan, (100,400))
+    screen.blit(volcan, (0,300))
     display.flip()
