@@ -16,19 +16,17 @@ def coord(ang, vinicial):
 
     return xcoord, ycoord
 
-def resistencia(ang, vinicial):
+def resistencia(ang, vinicial, t):
     ang1 = math.radians(ang)
     vox = vinicial*math.cos(ang1)
     voy =  vinicial*math.sin(ang1)
     av = vinicial/2
     xcoordr = []
     ycoordr = []
-    t = 0
-    
     while t < 1000:
         y1 = vox*t + ((av*t*t)/2)
         yr = voy*t + ((-9.81*t*t)/2)
-        t = t + 50
+        t = t + 1
         ycoordr.append(y1)
         xcoordr.append(x1)
     return xcoordr, ycoordr
@@ -38,6 +36,14 @@ def anim(xcoordr, ycoordr):
     puntos = 0
     while puntos < len(xcoordr):
         draw.rect(screen, (255,0,0), (xcoordr[puntos], 300-ycoordr[puntos], 10,10), 3)
+        time.delay(300)
+        display.update()
+        puntos += 1
+
+def animr(xcoordr, ycoordr):
+    puntos = 0
+    while puntos < len(xcoordr):
+        draw.rect(screen, (0,255,0), (xcoordr[puntos], 300-ycoordr[puntos], 10, 10), 3)
         time.delay(300)
         display.update()
         puntos += 1
@@ -80,22 +86,17 @@ while True:
     screen.blit(leyenda2, (0,20))
     leyenda3 = calibri.render("Altura máxima: ", True, (0,0,0))
     screen.blit(leyenda3, (0,40))
+    screen.blit(fondo, (0,0))
+    screen.blit(volcan, (-120,310))
     if animar1: 
         x1, y1 = coord(30,100)
         anim(x1, y1)
+        xr1, yr1 = resistencia(30,100, 0)
+        animr(xr1,yr1)
     if animar2:
         x2, y2 = coord(41, 175)
         anim(x2,y2)
     if animar3:
         x3, y3 = coord(44,300)
         anim(x3,y3) 
-    
-        #x1r, y1r = resistencia(30,100)
-        #anim(x1r, y1r)
-        #valor1 = calibri.render(alcance1, True, (0,0,0)) 
-        #valor2 = calibri.render(alturamaxima1, True, (0,0,0)) 
-        #screen.blit(10,20)
-        #screen.blit(10,40)
-    screen.blit(fondo, (0,0))
-    screen.blit(volcan, (0,300))
     display.flip()
