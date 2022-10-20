@@ -23,7 +23,7 @@ def resistencia(ang, vinicial, t):
     av = vinicial/2
     xcoordr = []
     ycoordr = []
-    while t < 1000:
+    while t < 10:
         xr = vox*t + ((av*t*t)/2)
         yr = voy*t + ((-9.81*t*t)/2)
         t = t + 1
@@ -47,31 +47,34 @@ def criticos(ang,vinicial):
 
     return alcance, alturamax
 
+def draw1():
+    x1, y1 = coord(30,100)
+    animr(x1, y1, (255, 0,0))
+
+def draw2():
+    xr1, yr1 = resistencia(30,100,0)
+    animr(xr1,yr1, (0, 255,0))
+
+def draw3():
+    x2, y2 = coord(41, 175)  
+    animr(x2,y2)
+    x3, y3 = coord(44,300)
+    animr(x3,y3)
+
 alcance1, alturamaxima1 = criticos(30,100)
 print(alturamaxima1)
 
 init()
 screen = display.set_mode((800,600))
-animar1 = False
+"""animar1 = False
 animar2 = False
-animar3 = False
+animar3 = False"""
 calibri = font.SysFont('Calibri', 20)
+fondo = transform.scale(image.load("fondo.jpg"), (800,600))
+volcan = transform.scale(image.load("volcan.png"), (300,300))
 
 while True:
     screen.fill((255,255,255))
-    fondo = transform.scale(image.load("fondo.jpg"), (800,600))
-    volcan = transform.scale(image.load("volcan.png"), (300,300))
-    for e in event.get():
-        if e.type == QUIT: sys.exit()
-        if e.type == KEYDOWN and e.key == K_1:
-            animar1 = True
-        if e.type == KEYDOWN and e.key == K_2:
-            animar2 = True
-            animar1 = False
-        if e.type == KEYDOWN and e.key == K_3:
-            animar3 = True 
-            animar2 = False
-    
     leyenda1 = calibri.render("Trayectoria actual: ", True, (0,0,0))
     screen.blit(leyenda1, (0,0))
     leyenda2 = calibri.render("Alcance máximo: ", True, (0,0,0))
@@ -80,18 +83,22 @@ while True:
     screen.blit(leyenda3, (0,40))
     screen.blit(fondo, (0,0))
     screen.blit(volcan, (-120,310))
-    if animar1: 
-        x1, y1 = coord(30,100)
-        animr(x1, y1, (255, 0,0))
-        xr1, yr1 = resistencia(30,100,0)
-        animr(xr1,yr1, (0, 255,0))
-    if animar2:
-        x2, y2 = coord(41, 175)
-        animr(x2,y2)
+
+    for e in event.get():
+        if e.type == QUIT: sys.exit()
+        if e.type == KEYDOWN and e.key == K_1:
+            draw1()
+        elif e.type == KEYDOWN and e.key == K_2:
+            draw2()
+        elif e.type == KEYDOWN and e.key == K_3:
+            draw3()
+        
+
+
+
+"""     
         #xr2, yr2 = resistencia(41,175, 0)
         #animr(xr2,yr2, (0, 255,0))
-    if animar3:
-        x3, y3 = coord(44,300)
-        animr(x3,y3) 
+
         #xr3, yr3 = resistencia(44,300,0)
-        #animr(xr3,yr3, (0, 255,0))
+        #animr(xr3,yr3, (0, 255,0))"""
