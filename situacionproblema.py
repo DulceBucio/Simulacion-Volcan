@@ -20,6 +20,8 @@ def anim(xcoord, ycoord):
     puntos = 0
     while puntos < len(xcoord):
         draw.rect(screen, (255,0,0), (xcoord[puntos], 300-ycoord[puntos], 10,10), 3)
+        time.delay(300)
+        display.update()
         puntos += 1
 
 def criticos(ang,vinicial):
