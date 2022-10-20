@@ -60,6 +60,8 @@ calibri = font.SysFont('Calibri', 20)
 
 while True:
     screen.fill((255,255,255))
+    fondo = transform.scale(image.load("fondo.jpg"), (800,600))
+    volcan = transform.scale(image.load("volcan.png"), (300,300))
     for e in event.get():
         if e.type == QUIT: sys.exit()
         clock.tick(15)
@@ -83,5 +85,6 @@ while True:
         #valor2 = calibri.render(alturamaxima1, True, (0,0,0)) 
         #screen.blit(10,20)
         #screen.blit(10,40)
-    
+    screen.blit(fondo, (0,0))
+    screen.blit(volcan, (100,400))
     display.flip()
