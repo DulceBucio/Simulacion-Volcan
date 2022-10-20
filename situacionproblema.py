@@ -99,4 +99,3 @@ while True:
     if animar3:
         x3, y3 = coord(44,300)
         anim(x3,y3) 
-    display.flip()
