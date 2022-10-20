@@ -24,29 +24,21 @@ def resistencia(ang, vinicial, t):
     xcoordr = []
     ycoordr = []
     while t < 1000:
-        y1 = vox*t + ((av*t*t)/2)
+        xr = vox*t + ((av*t*t)/2)
         yr = voy*t + ((-9.81*t*t)/2)
         t = t + 1
-        ycoordr.append(y1)
-        xcoordr.append(x1)
+        ycoordr.append(yr)
+        xcoordr.append(xr)
     return xcoordr, ycoordr
 
-
-def anim(xcoordr, ycoordr):
+def animr(xcoordr, ycoordr, color):
     puntos = 0
     while puntos < len(xcoordr):
-        draw.rect(screen, (255,0,0), (xcoordr[puntos], 300-ycoordr[puntos], 10,10), 3)
+        draw.rect(screen, color, (xcoordr[puntos], 300-ycoordr[puntos], 10, 10), 3)
         time.delay(300)
         display.update()
         puntos += 1
-
-def animr(xcoordr, ycoordr):
-    puntos = 0
-    while puntos < len(xcoordr):
-        draw.rect(screen, (0,255,0), (xcoordr[puntos], 300-ycoordr[puntos], 10, 10), 3)
-        time.delay(300)
-        display.update()
-        puntos += 1
+        
 
 def criticos(ang,vinicial):
     ang1 = math.radians(ang)
@@ -63,7 +55,6 @@ screen = display.set_mode((800,600))
 animar1 = False
 animar2 = False
 animar3 = False
-clock = time.Clock()
 calibri = font.SysFont('Calibri', 20)
 
 while True:
@@ -72,13 +63,14 @@ while True:
     volcan = transform.scale(image.load("volcan.png"), (300,300))
     for e in event.get():
         if e.type == QUIT: sys.exit()
-        clock.tick(15)
         if e.type == KEYDOWN and e.key == K_1:
             animar1 = True
         if e.type == KEYDOWN and e.key == K_2:
             animar2 = True
+            animar1 = False
         if e.type == KEYDOWN and e.key == K_3:
             animar3 = True 
+            animar2 = False
     
     leyenda1 = calibri.render("Trayectoria actual: ", True, (0,0,0))
     screen.blit(leyenda1, (0,0))
@@ -90,12 +82,16 @@ while True:
     screen.blit(volcan, (-120,310))
     if animar1: 
         x1, y1 = coord(30,100)
-        anim(x1, y1)
-        xr1, yr1 = resistencia(30,100, 0)
-        animr(xr1,yr1)
+        animr(x1, y1, (255, 0,0))
+        xr1, yr1 = resistencia(30,100,0)
+        animr(xr1,yr1, (0, 255,0))
     if animar2:
         x2, y2 = coord(41, 175)
-        anim(x2,y2)
+        animr(x2,y2)
+        #xr2, yr2 = resistencia(41,175, 0)
+        #animr(xr2,yr2, (0, 255,0))
     if animar3:
         x3, y3 = coord(44,300)
-        anim(x3,y3) 
+        animr(x3,y3) 
+        #xr3, yr3 = resistencia(44,300,0)
+        #animr(xr3,yr3, (0, 255,0))
