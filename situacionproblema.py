@@ -16,6 +16,24 @@ def coord(ang, vinicial):
 
     return xcoord, ycoord
 
+def resistencia(ang, vinicial):
+    ang1 = math.radians(ang)
+    vox = vinicial*math.cos(ang1)
+    voy =  vinicial*math.sin(ang1)
+    av = vinicial/2
+    xcoordr = []
+    ycoordr = []
+    t = 0
+    
+    while t < 1000:
+        y1 = vox*t + ((av*t*t)/2)
+        yr = voy*t + ((-9.81*t*t)/2)
+        t = t + 50
+        ycoordr.append(y1)
+        xcoordr.append(x1)
+    return xcoordr, ycoordr
+
+
 def anim(xcoord, ycoord):
     puntos = 0
     while puntos < len(xcoord):
@@ -27,10 +45,12 @@ def anim(xcoord, ycoord):
 def criticos(ang,vinicial):
     ang1 = math.radians(ang)
     alcance = ((vinicial*vinicial)*math.sin(2*ang1))/9.81
-    alturamax = (2*vinicial*math.sin(ang1))/(2*9.81)
+    alturamax = 300 + ((vinicial*vinicial)*(math.sin(ang1)*math.sin(ang1))/(2*9.81))
 
     return alcance, alturamax
 
+alcance1, alturamaxima1 = criticos(30,100)
+print(alturamaxima1)
 
 init()
 screen = display.set_mode((800,600))
@@ -56,6 +76,9 @@ while True:
         x1, y2 = coord(30,100)
         anim(x1, y2)
         alcance1, alturamaxima1 = criticos(30,100)
+        print(alturamaxima1)
+        x1r, y1r = resistencia(30,100)
+        anim(x1r, y1r)
         #valor1 = calibri.render(alcance1, True, (0,0,0)) 
         #valor2 = calibri.render(alturamaxima1, True, (0,0,0)) 
         #screen.blit(10,20)
