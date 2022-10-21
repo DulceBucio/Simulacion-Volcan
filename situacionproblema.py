@@ -53,10 +53,13 @@ def draw1():
     alcance1, alturamaxima1 = criticos(30,100)
     print(alcance1)
     print(alturamaxima1)
+    trayectoria = calibri.render("30°, 100m/s", True, (0,0,0))
     alcance = calibri.render("862.79 m", True, (0,0,0))    
     altura = calibri.render("427.42 m", True, (0,0,0))
-    screen.blit(alcance, (550, 530))
-    screen.blit(altura, (550, 550))
+    screen.blit(trayectoria, (550, 530))
+    screen.blit(alcance, (550, 550))
+    screen.blit(altura, (550, 570))
+    
 def draw1r():
     xr1, yr1 = resistencia(30,100,0)
     animr(xr1,yr1, (0, 255,0))
@@ -67,10 +70,12 @@ def draw2():
     alcance1, alturamaxima1 = criticos(41,175)
     print(alcance1)
     print(alturamaxima1)
+    trayectoria = calibri.render("41°, 175m/s", True, (0,0,0))
     alcance = calibri.render("3091.43 m", True, (0,0,0))    
     altura = calibri.render("971.83", True, (0,0,0))
-    screen.blit(alcance, (550, 530))
-    screen.blit(altura, (550, 550))
+    screen.blit(trayectoria, (550, 530))
+    screen.blit(alcance, (550, 550))
+    screen.blit(altura, (550, 570))
 
 def draw2r():
     xr2, yr2 = resistencia(41,175,0)
@@ -82,10 +87,12 @@ def draw3():
     alcance1, alturamaxima1 = criticos(44,300)
     print(alcance1)
     print(alturamaxima1)
+    trayectoria = calibri.render("44°, 300m/s", True, (0,0,0))
     alcance = calibri.render("9168.72 m", True, (0,0,0))    
     altura = calibri.render("2513.53 m", True, (0,0,0))
-    screen.blit(alcance, (550, 530))
-    screen.blit(altura, (550, 550))
+    screen.blit(trayectoria, (550, 530))
+    screen.blit(alcance, (550, 550))
+    screen.blit(altura, (550, 570))
 
 def draw3r():
     xr3, yr3 = resistencia(44,300,0)
