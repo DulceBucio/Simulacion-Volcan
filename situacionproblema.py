@@ -50,7 +50,13 @@ def criticos(ang,vinicial):
 def draw1():
     x1, y1 = coord(30,100)
     animr(x1, y1, (255, 0,0))
-
+    alcance1, alturamaxima1 = criticos(30,100)
+    print(alcance1)
+    print(alturamaxima1)
+    alcance = calibri.render("862.79 m", True, (0,0,0))    
+    altura = calibri.render("427.42 m", True, (0,0,0))
+    screen.blit(alcance, (550, 530))
+    screen.blit(altura, (550, 550))
 def draw1r():
     xr1, yr1 = resistencia(30,100,0)
     animr(xr1,yr1, (0, 255,0))
@@ -58,6 +64,13 @@ def draw1r():
 def draw2():
     x2, y2 = coord(41, 175)  
     animr(x2,y2, (255, 0, 0))
+    alcance1, alturamaxima1 = criticos(41,175)
+    print(alcance1)
+    print(alturamaxima1)
+    alcance = calibri.render("3091.43 m", True, (0,0,0))    
+    altura = calibri.render("971.83", True, (0,0,0))
+    screen.blit(alcance, (550, 530))
+    screen.blit(altura, (550, 550))
 
 def draw2r():
     xr2, yr2 = resistencia(41,175,0)
@@ -66,19 +79,20 @@ def draw2r():
 def draw3():
     x3, y3 = coord(44,300)
     animr(x3,y3, (255, 0, 0))
+    alcance1, alturamaxima1 = criticos(44,300)
+    print(alcance1)
+    print(alturamaxima1)
+    alcance = calibri.render("9168.72 m", True, (0,0,0))    
+    altura = calibri.render("2513.53 m", True, (0,0,0))
+    screen.blit(alcance, (550, 530))
+    screen.blit(altura, (550, 550))
 
 def draw3r():
     xr3, yr3 = resistencia(44,300,0)
     animr(xr3,yr3, (0, 255,0))
 
-alcance1, alturamaxima1 = criticos(30,100)
-print(alturamaxima1)
-
 init()
 screen = display.set_mode((800,600))
-"""animar1 = False
-animar2 = False
-animar3 = False"""
 calibri = font.SysFont('Calibri', 20)
 fondo = transform.scale(image.load("fondo.jpg"), (800,600))
 volcan = transform.scale(image.load("volcan.png"), (300,300))
@@ -86,13 +100,13 @@ volcan = transform.scale(image.load("volcan.png"), (300,300))
 while True:
     screen.fill((255,255,255))
     leyenda1 = calibri.render("Trayectoria actual: ", True, (0,0,0))
-    screen.blit(leyenda1, (0,0))
     leyenda2 = calibri.render("Alcance máximo: ", True, (0,0,0))
-    screen.blit(leyenda2, (0,20))
     leyenda3 = calibri.render("Altura máxima: ", True, (0,0,0))
-    screen.blit(leyenda3, (0,40))
     screen.blit(fondo, (0,0))
     screen.blit(volcan, (-120,310))
+    screen.blit(leyenda1, (400,530))
+    screen.blit(leyenda2, (400,550))
+    screen.blit(leyenda3, (400,570))
 
     for e in event.get():
         if e.type == QUIT: sys.exit()
@@ -105,13 +119,3 @@ while True:
         elif e.type == KEYDOWN and e.key == K_3:
             draw3()
             draw3r()
-        
-
-
-
-"""     
-        #xr2, yr2 = resistencia(41,175, 0)
-        #animr(xr2,yr2, (0, 255,0))
-
-        #xr3, yr3 = resistencia(44,300,0)
-        #animr(xr3,yr3, (0, 255,0))"""
