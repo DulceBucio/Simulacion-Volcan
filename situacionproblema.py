@@ -51,15 +51,25 @@ def draw1():
     x1, y1 = coord(30,100)
     animr(x1, y1, (255, 0,0))
 
-def draw2():
+def draw1r():
     xr1, yr1 = resistencia(30,100,0)
     animr(xr1,yr1, (0, 255,0))
 
-def draw3():
+def draw2():
     x2, y2 = coord(41, 175)  
-    animr(x2,y2)
+    animr(x2,y2, (255, 0, 0))
+
+def draw2r():
+    xr2, yr2 = resistencia(41,175,0)
+    animr(xr2,yr2, (0, 255,0))
+
+def draw3():
     x3, y3 = coord(44,300)
-    animr(x3,y3)
+    animr(x3,y3, (255, 0, 0))
+
+def draw3r():
+    xr3, yr3 = resistencia(44,300,0)
+    animr(xr3,yr3, (0, 255,0))
 
 alcance1, alturamaxima1 = criticos(30,100)
 print(alturamaxima1)
@@ -88,10 +98,13 @@ while True:
         if e.type == QUIT: sys.exit()
         if e.type == KEYDOWN and e.key == K_1:
             draw1()
+            draw1r()
         elif e.type == KEYDOWN and e.key == K_2:
             draw2()
+            draw2r()
         elif e.type == KEYDOWN and e.key == K_3:
             draw3()
+            draw3r()
         
 
 
