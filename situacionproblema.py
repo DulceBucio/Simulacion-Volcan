@@ -20,7 +20,7 @@ def resistencia(ang, vinicial, t):
     ang1 = math.radians(ang)
     vox = vinicial*math.cos(ang1)
     voy =  vinicial*math.sin(ang1)
-    av = vinicial/2
+    av = -2 
     xcoordr = []
     ycoordr = []
     while t < 10:
